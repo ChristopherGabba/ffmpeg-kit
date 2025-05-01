@@ -1,24 +1,27 @@
 Pod::Spec.new do |s|
     s.name             = 'ffmpeg-kit-ios-full-gpl'
-    s.version          = '6.0'
-    s.summary          = 'FFmpegKit iOS full GPL binary (multi-framework)'
-    s.description      = 'Prebuilt full-gpl FFmpegKit XCFramework bundle for iOS'
-    s.license          = { :type => 'MIT' }
-    s.homepage         = 'https://github.com/ChristopherGabba/ffmpeg-kit'
-    s.author           = 'ChristopherGabba'
+    s.version          = '6.0'   # Must match what ffmpeg-kit-react-native expects.
+    s.summary          = 'Custom full-gpl FFmpegKit iOS frameworks from ChristopherGabba.'
+    s.homepage         = 'https://github.com/ChristopherGabba/ffmpeg-kit-ios-full-gpl'
+    s.license          = { :type => 'LGPL' }
+    s.author           = { 'ChristopherGabba' => 'https://github.com/ChristopherGabba' }
     s.platform         = :ios, '12.1'
-    s.source           = {
-      :http => 'https://github.com/ChristopherGabba/ffmpeg-kit/releases/download/6.0.3/bundle-apple-xcframework-ios-lts.zip'
-    }
+    s.static_framework = true
   
+    # Use the HTTP source to fetch the zipped package directly.
+    s.source           = { :http => 'https://github.com/ChristopherGabba/ffmpeg-kit-ios-full-gpl/archive/refs/tags/latest.zip' }
+  
+    # Because the frameworks are inside the extracted archive under:
+    # ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/
+    # we list each of the needed frameworks with the full relative path.
     s.vendored_frameworks = [
-      'ffmpegkit.xcframework',
-      'libavcodec.xcframework',
-      'libavdevice.xcframework',
-      'libavfilter.xcframework',
-      'libavformat.xcframework',
-      'libavutil.xcframework',
-      'libswresample.xcframework',
-      'libswscale.xcframework'
+      'ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/libswscale.xcframework',
+      'ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/libswresample.xcframework',
+      'ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/libavutil.xcframework',
+      'ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/libavformat.xcframework',
+      'ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/libavfilter.xcframework',
+      'ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/libavdevice.xcframework',
+      'ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/libavcodec.xcframework',
+      'ffmpeg-kit-ios-full-gpl-latest/ffmpeg-kit-ios-full-gpl/6.0-80adc/ffmpegkit.xcframework'
     ]
   end
